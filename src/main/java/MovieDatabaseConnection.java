@@ -3,6 +3,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
+
 
 public class MovieDatabaseConnection {
 
@@ -12,6 +14,8 @@ public class MovieDatabaseConnection {
 
 
     public static void main(String[] args) throws  SQLException {
+
+      //  Scanner scanner = new Scanner(System.in);
 
         Connection customConnection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
 
