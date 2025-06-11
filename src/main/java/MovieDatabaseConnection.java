@@ -15,14 +15,22 @@ public class MovieDatabaseConnection {
 
         Connection customConnection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
 
+
+        String createMovieCommand = "INSERT INTO movie(movie_name, movie_year) VALUES (\"Home Alone\", \"1990\");";
         String COMMAND = "select * from movie;";
 
         try (Statement statement = customConnection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(COMMAND);
+            //ResultSet resultSet = statement.executeQuery(COMMAND);
+            //why did this have to be moved in order for it to create/read the result set?
+            int rowsAffected = statement.executeUpdate(createMovieCommand);
+            System.out.println("The following rows were inserted: " + rowsAffected);
 
+            ResultSet resultSet = statement.executeQuery(COMMAND);
             while (resultSet.next()) {
                 String movie_id = resultSet.getString("movie_id");
                 System.out.println("Movie ID" + movie_id);
+                String movie_name = resultSet.getString("movie_name");
+                System.out.println("Movie name" + movie_name);
             }
         }
         catch (SQLException e) {
