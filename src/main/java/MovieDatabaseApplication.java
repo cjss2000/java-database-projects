@@ -1,11 +1,11 @@
 import java.sql.SQLException;
-import services.MovieDatabaseOperations;
+import services.MovieDatabaseService;
 
 public class MovieDatabaseApplication {
 
     public static void main(String[] args) {
         try {
-            MovieDatabaseOperations movieDatabaseOperations = new MovieDatabaseOperations();
+            MovieDatabaseService movieDatabaseOperations = new MovieDatabaseService();
             movieDatabaseOperations.addMovie("Test", "1990");
             movieDatabaseOperations.getAllMovies();
         } catch (SQLException e) {

@@ -8,12 +8,12 @@ import java.util.List;
 import models.Movie;
 import services.database_config.DatabaseConnection;
 
-public class MovieDatabaseOperations {
+public class MovieDatabaseService {
 
     private DatabaseConnection connection;
     private Statement statement;
 
-    public MovieDatabaseOperations() throws SQLException {
+    public MovieDatabaseService() throws SQLException {
         this.connection = new DatabaseConnection();
         this.statement = connection.getStatement();
     }
