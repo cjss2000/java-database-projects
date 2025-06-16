@@ -2,14 +2,22 @@ package models;
 
 public class Movie {
 
-    private int id;
+    private int movieId;
     private String movieName;
+    private int movieYear;
 
-    public Movie(int id, String movieName) {
-        this.id = id;
+    public Movie(int movieId, String movieName, int movieYear) {
+        this.movieId = movieId;
         this.movieName = movieName;
+        this.movieYear = movieYear;
     }
 
+    public int getMovieYear(){
+        return movieYear;
+    }
+    public void setMovieYear(){
+        this.movieYear = movieYear;
+    }
     public String getMovieName() {
         return movieName;
     }
@@ -18,16 +26,16 @@ public class Movie {
         this.movieName = movieName;
     }
 
-    public int getId() {
-        return id;
+    public int getMovieId() {
+        return movieId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMovieId(int id) {
+        this.movieId = id;
     }
 
     @Override
     public String toString() {
-        return "Movie id: " + id + ", movie name: " + movieName;
+        return "Movie id: " + movieId + ", movie name: " + movieName + ", movie year" + movieYear;
     }
 }

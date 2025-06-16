@@ -18,9 +18,10 @@ public class MovieDatabaseService {
         this.statement = connection.getStatement();
     }
 
-    public void addMovie(String movieName, String movieYear) throws SQLException {
+    public void addMovie(int movie_id, String movie_name, int movie_year) throws SQLException {
         String createMovieCommand =
-            "INSERT INTO movie(movie_name, movie_year) VALUES (" + movieName + ", " + movieYear + ");";
+       //     "INSERT INTO movie(movie_id, movie_name, movie_year) VALUES (" + movie_id + ", " + movie_name + ", " + + movie_year + ");";
+                "INSERT INTO movie(movie_id, movie_name, movie_year) VALUES (" + movie_id + ", '" + movie_name + "', " + movie_year + ");";
         int rowsAffected = statement.executeUpdate(createMovieCommand);
         System.out.println("The following rows were inserted: " + rowsAffected);
     }
@@ -32,10 +33,16 @@ public class MovieDatabaseService {
         while (resultSet.next()) {
             int movie_id = resultSet.getInt("movie_id");
             String movie_name = resultSet.getString("movie_name");
-            Movie movie = new Movie(movie_id, movie_name);
+            int movie_year = resultSet.getInt("movie_year");
+            Movie movie = new Movie(movie_id, movie_name, movie_year);
             list.add(movie);
         }
         return list;
     }
 
+//    public Movie getMovieByTitle(String title){
+//        for (Movie movie : list){
+//
+//        }
+//    }
 }
