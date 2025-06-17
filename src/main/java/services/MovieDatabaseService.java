@@ -40,6 +40,11 @@ public class MovieDatabaseService {
         return list;
     }
 
+    public void conductQuery(String query) throws SQLException {
+       ResultSet rs = statement.executeQuery(query);
+
+    }
+
 //    public Movie getMovieByTitle(String title){
 //        for (Movie movie : list){
 //

@@ -16,7 +16,8 @@ public class MovieView {
         System.out.println(" 2) Add a movie");
         System.out.println(" 3) Remove a movie");
         System.out.println(" 4) Edit movie data");
-        System.out.println(" 5) Kill Application");
+        System.out.println(" 5) Conduct Query Search");
+        System.out.println(" 6) Kill Application");
     }
 
     public String userInput(String controllerMessage){

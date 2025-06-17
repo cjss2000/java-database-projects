@@ -31,10 +31,28 @@ MovieDatabaseService mds = new MovieDatabaseService();
 
            case 2:
              //  mds.addMovie();
+               break;
+           case 3:
+               break;
+           case 4:
+               break;
+           case 5:
+               mds.conductQuery();
+               break;
+           case 6:
+               isRunning = false;
+               break;
 
 
        }
     }
 }
+
+public void handleConductSQLQuery(){
+        String query = mv.userInput("Conduct SQL Query here: ");
+        mds.conductQuery();
+
+}
+
 
 }
