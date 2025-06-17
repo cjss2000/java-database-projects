@@ -48,9 +48,9 @@ MovieDatabaseService mds = new MovieDatabaseService();
     }
 }
 
-public void handleConductSQLQuery(){
+public void handleConductSQLQuery() throws SQLException {
         String query = mv.userInput("Conduct SQL Query here: ");
-        mds.conductQuery();
+        mds.conductQuery(query);
 
 }
 
