@@ -21,11 +21,15 @@ public class MovieView {
     }
 
     public String userInput(String controllerMessage){
+        System.out.println(controllerMessage + ": ");
         String userInput = scanner.nextLine();
         return userInput;
     }
 
     public int numberInput(String controllerMessage){
+        System.out.println(controllerMessage + ": ");
+        int input = scanner.nextInt();
+        scanner.nextLine();
        return scanner.nextInt();
 
     }
