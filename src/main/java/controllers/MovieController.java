@@ -42,6 +42,7 @@ MovieDatabaseService mds = new MovieDatabaseService();
                break;
            case 6:
                isRunning = false;
+               mv.displayMessage("ending application");
                break;
 
 
