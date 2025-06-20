@@ -18,22 +18,21 @@ public class MovieDatabaseService {
         this.statement = connection.getStatement();
     }
 
-    public void addMovie(int movie_id, String movie_name, int movie_year) throws SQLException {
-        String createMovieCommand = "INSERT INTO movie(movie_id, movie_name, movie_year) VALUES (" + movie_id + ", '" + movie_name + "', " + movie_year + ");";
+    public void addMovie(String movie_name, int movie_year) throws SQLException {
+        String createMovieCommand = "INSERT INTO movie(movie_name, movie_year) VALUES ('" + movie_name + "', " + movie_year + ");";
         int rowsAffected = statement.executeUpdate(createMovieCommand);
         System.out.println("The following rows were inserted: " + rowsAffected);
     }
 
     public void deleteMovieByID(int movie_id) throws SQLException {
-      String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
-      int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
-      System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
+        String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
+        int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
+        System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
     }
 
     public void editMovieNamefromId(int movie_id, String updatedMovieName) throws SQLException {
-
-
-        String updateMovie = "UPDATE movie SET movie_name = '" + updatedMovieName + "' WHERE movie_id = " + movie_id + ";";
+        String updateMovie =
+            "UPDATE movie SET movie_name = '" + updatedMovieName + "' WHERE movie_id = " + movie_id + ";";
         int rowsAffected = statement.executeUpdate(updateMovie);
         System.out.println("Movie has been succcessfully updated");
     }
@@ -58,6 +57,5 @@ public class MovieDatabaseService {
         ResultSet resultSet = statement.executeQuery(movie_id_select);
         System.out.println(movie_id_select);
     }
-
 
 }
