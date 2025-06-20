@@ -8,7 +8,7 @@ import java.sql.SQLException;
 //public class MovieController() {
 //    private MovieView mv;
 //}
-
+//
 public class MovieController{
 
 MovieView mv = new MovieView();
