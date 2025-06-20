@@ -1,4 +1,4 @@
-package services;
+package views;
 
 import java.util.Scanner;
 
@@ -6,11 +6,11 @@ public class MovieView {
 
     private Scanner scanner;
 
-    public MovieView(){
+    public MovieView() {
         this.scanner = new Scanner(System.in);
     }
 
-    public void displayMenuBoard(){
+    public void displayMenuBoard() {
         System.out.println("****Welcome to the internal Movie Database System****");
         System.out.println(" 1) Display all movies");
         System.out.println(" 2) Add a movie");
@@ -20,21 +20,21 @@ public class MovieView {
         System.out.println(" 6) Kill Application");
     }
 
-    public String userInput(String controllerMessage){
+    public String userInput(String controllerMessage) {
         System.out.println(controllerMessage + ": ");
         String userInput = scanner.nextLine();
+        if (userInput.isEmpty()) {
+            userInput = scanner.nextLine();
+        }
         return userInput;
     }
 
-    public int numberInput(String controllerMessage){
+    public int numberInput(String controllerMessage) {
         System.out.println(controllerMessage + ": ");
-        int input = scanner.nextInt();
-        scanner.nextLine();
-       return scanner.nextInt();
-
+        return scanner.nextInt();
     }
 
-    public void displayMessage(String message){
+    public void displayMessage(String message) {
         System.out.println(message);
     }
 }
