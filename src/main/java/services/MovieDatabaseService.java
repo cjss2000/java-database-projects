@@ -26,14 +26,16 @@ public class MovieDatabaseService {
     }
 
     public void deleteMovieByID(int movie_id) throws SQLException {
-        String DeleteRowCommand = "DELETE FROM movie WHERE movie_id=(this.movie_id) VALUES (" this.movie_id() ");
+      String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
+      int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
+        System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
     }
 
     public void editMovieNamefromId(int movie_id) throws SQLException {
-        String findMovie = "SELECT MOVIE WHERE movie_id=(this.movie_id) VALUES (" this.movie_id() ");
-        String edit movie = "code to edit movie";
+     //   String findMovie = "SELECT MOVIE WHERE movie_id=(this.movie_id) VALUES (" this.movie_id() ");
+      //  String edit movie = "code to edit movie";
         int movieToEdit = movie_id;
-        String findMovie = findMovie + movieToEdit.asString();
+      //  String findMovie = findMovie + movieToEdit.asString();
     }
 
     public List<Movie> getAllMovies() throws SQLException {
@@ -50,14 +52,13 @@ public class MovieDatabaseService {
         return list;
     }
 
-    public void conductQuery(String query) throws SQLException {
-       ResultSet rs = statement.executeQuery(query);
-
+//    public void conductQuery(String query) throws SQLException {
+//       ResultSet rs = statement.executeQuery(query);
+//
+//    }
+    public void getMovieDetailsByID(int movie_id){
+        String movie_id_select = "";
     }
 
-//    public Movie getMovieByTitle(String title){
-//        for (Movie movie : list){
-//
-//        }
-//    }
+
 }

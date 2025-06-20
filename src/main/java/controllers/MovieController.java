@@ -38,7 +38,7 @@ MovieDatabaseService mds = new MovieDatabaseService();
            case 4:
                break;
            case 5:
-               mds.conductQuery(mv.userInput("Please conduct your query here: "));
+             //  mds.conductQuery(mv.userInput("Please conduct your query here: "));
                break;
            case 6:
                isRunning = false;
@@ -64,7 +64,7 @@ mds.addMovie(inputMovie_ID,inputMovieName,inputMovie_year);
 
 public void handleConductSQLQuery() throws SQLException {
         String query = mv.userInput("Conduct SQL Query here: ");
-        mds.conductQuery(query);
+   //     mds.conductQuery(query);
 
 }
 
