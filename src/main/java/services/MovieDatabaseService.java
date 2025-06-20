@@ -20,10 +20,20 @@ public class MovieDatabaseService {
 
     public void addMovie(int movie_id, String movie_name, int movie_year) throws SQLException {
         String createMovieCommand =
-       //     "INSERT INTO movie(movie_id, movie_name, movie_year) VALUES (" + movie_id + ", " + movie_name + ", " + + movie_year + ");";
                 "INSERT INTO movie(movie_id, movie_name, movie_year) VALUES (" + movie_id + ", '" + movie_name + "', " + movie_year + ");";
         int rowsAffected = statement.executeUpdate(createMovieCommand);
         System.out.println("The following rows were inserted: " + rowsAffected);
+    }
+
+    public void deleteMovieByID(int movie_id) throws SQLException {
+        String DeleteRowCommand = "DELETE FROM movie WHERE movie_id=(this.movie_id) VALUES (" this.movie_id() ");
+    }
+
+    public void editMovieNamefromId(int movie_id) throws SQLException {
+        String findMovie = "SELECT MOVIE WHERE movie_id=(this.movie_id) VALUES (" this.movie_id() ");
+        String edit movie = "code to edit movie";
+        int movieToEdit = movie_id;
+        String findMovie = findMovie + movieToEdit.asString();
     }
 
     public List<Movie> getAllMovies() throws SQLException {

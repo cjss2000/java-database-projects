@@ -26,7 +26,7 @@ MovieDatabaseService mds = new MovieDatabaseService();
 
        switch (choice) {
            case 1:
-               mds.getAllMovies();
+               handleAllMoviesDisplay();
                break;
 
            case 2:
@@ -47,6 +47,12 @@ MovieDatabaseService mds = new MovieDatabaseService();
 
        }
     }
+}
+
+public void handleAllMoviesDisplay() throws SQLException {
+        mds.getAllMovies();
+
+
 }
 
 public void handleAddMovie() throws SQLException {
