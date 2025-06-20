@@ -31,13 +31,14 @@ MovieDatabaseService mds = new MovieDatabaseService();
 
            case 2:
              //  mds.addMovie();
+               handleAddMovie();
                break;
            case 3:
                break;
            case 4:
                break;
            case 5:
-               mds.conductQuery();
+               mds.conductQuery(mv.userInput("Please conduct your query here: "));
                break;
            case 6:
                isRunning = false;
@@ -46,6 +47,13 @@ MovieDatabaseService mds = new MovieDatabaseService();
 
        }
     }
+}
+
+public void handleAddMovie() throws SQLException {
+int inputMovie_ID = mv.numberInput("Please enter your movie id");
+String inputMovieName = mv.userInput("What is the title?");
+int inputMovie_year = mv.numberInput("What year was this movie created?");
+mds.addMovie(inputMovie_ID,inputMovieName,inputMovie_year);
 }
 
 public void handleConductSQLQuery() throws SQLException {
