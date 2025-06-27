@@ -17,7 +17,8 @@ public class MovieView {
         System.out.println(" 3) Remove a movie");
         System.out.println(" 4) Change/Edit movie name");
         System.out.println(" 5) Specific Movie details");
-        System.out.println(" 6) Kill Application");
+        System.out.println(" 6) Movie ID check");
+        System.out.println(" 7) Kill application");
     }
 
     public String userInput(String controllerMessage) {

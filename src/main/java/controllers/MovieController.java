@@ -40,6 +40,9 @@ public class MovieController {
                     handleMovieDetails();
                     break;
                 case 6:
+                    handleMovieIDCheck();
+                    break;
+                case 7:
                     isRunning = false;
                     mv.displayMessage("ending application");
                     break;
@@ -52,6 +55,9 @@ public class MovieController {
     public void handleAllMoviesDisplay() throws SQLException {
         List<Movie> movieList = mds.getAllMovies();
         // TODO: use a for - loop to iterate over the movies in the list above
+        for(int i = 0; i < movieList.size(); i++){
+          mv.displayMessage("Here is your list:" + movieList.get(i).toString()) ;
+        }
         // call a toString method for each of them
         // pass the String to the view for it to be printed
     }
@@ -60,12 +66,16 @@ public class MovieController {
         String inputMovieName = mv.userInput("What is the title?");
         int inputMovie_year = mv.numberInput("What year was this movie created?");
         mds.addMovie(inputMovieName, inputMovie_year);
+        mv.displayMessage("your movie has been added");
+        handleAllMoviesDisplay();
         // TODO: call the view here to say that movie was added
     }
 
     public void handleDeleteMovie() throws SQLException {
         int movieToDeleteId = mv.numberInput("Please provide your ID number for movie to remove:");
         mds.deleteMovieByID(movieToDeleteId);
+        mv.displayMessage("Movie has been successfully deleted");
+        handleAllMoviesDisplay();
         // TODO: call the view here to say that movie was deleted
     }
 
@@ -73,16 +83,34 @@ public class MovieController {
         String updatedMovieName = mv.userInput("Please enter the updated moviename");
         int movieId = mv.numberInput("Please enter your existing movie id");
         mds.editMovieNamefromId(movieId, updatedMovieName);
+        mv.displayMessage("Movie:" + movieId + "has been updated");
+
+        //user getter to get name
         // TODO: call the view here to say that movie was updated
     }
 
     public void handleMovieDetails() throws SQLException {
         int movieId = mv.numberInput("Please enter your movie ID for more information");
+        mv.displayMessage("Here is your current movie information");
         mds.getMovieDetailsByID(movieId);
+
         // TODO: call the view here to display movie details
     }
 
     // TODO: add a method that checks if the movie with such ID exists in the database
-
+    public void handleMovieIDCheck() throws SQLException
+    {
+        List<Movie> movieList = mds.getAllMovies();
+        int movieId = mv.numberInput("Please enter your ID for checking service");
+        for (Movie movie : movieList){
+            if (movieId == movie.getMovieId()) {
+                mv.displayMessage("Your movie has been found by the id!");
+                break;
+            }
+                else{mv.displayMessage("movie was not found by provided id!");
+            }
+            }
+        }
+    }
     // TODO: BONUS: add a movie genre functionality
-}
+
