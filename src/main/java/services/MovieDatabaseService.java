@@ -53,9 +53,16 @@ public class MovieDatabaseService {
 
 
     public void getMovieDetailsByID(int movie_id) throws SQLException {
-        String movie_id_select = "SELECT * FROM movie WHERE movie_id" + movie_id + ";";
+        String movie_id_select = "SELECT * FROM movie WHERE movie_id ="  + movie_id + ";";
         ResultSet resultSet = statement.executeQuery(movie_id_select);
-        System.out.println(movie_id_select);
+        while (resultSet.next()){
+            int movieId = resultSet.getInt("movie_id");
+            String movie_name = resultSet.getString("movie_name");
+            int movie_year = resultSet.getInt("movie_year");
+            Movie movie = new Movie(movieId, movie_name, movie_year);
+            System.out.println(movie.toString());
+        }
+
     }
 
 }

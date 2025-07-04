@@ -55,8 +55,8 @@ public class MovieController {
     public void handleAllMoviesDisplay() throws SQLException {
         List<Movie> movieList = mds.getAllMovies();
         // TODO: use a for - loop to iterate over the movies in the list above
-        for(int i = 0; i < movieList.size(); i++){
-          mv.displayMessage("Here is your list:" + movieList.get(i).toString()) ;
+        for (int i = 0; i < movieList.size(); i++) {
+            mv.displayMessage("Here is your list:" + movieList.get(i).toString());
         }
         // call a toString method for each of them
         // pass the String to the view for it to be printed
@@ -98,19 +98,21 @@ public class MovieController {
     }
 
     // TODO: add a method that checks if the movie with such ID exists in the database
-    public void handleMovieIDCheck() throws SQLException
-    {
+    public Movie handleMovieIDCheck() throws SQLException {
         List<Movie> movieList = mds.getAllMovies();
         int movieId = mv.numberInput("Please enter your ID for checking service");
-        for (Movie movie : movieList){
+        for (Movie movie : movieList) {
             if (movieId == movie.getMovieId()) {
                 mv.displayMessage("Your movie has been found by the id!");
-                break;
+                return movie;
+
             }
-                else{mv.displayMessage("movie was not found by provided id!");
-            }
-            }
+
         }
+
+
+        return null;
     }
+}
     // TODO: BONUS: add a movie genre functionality
 
