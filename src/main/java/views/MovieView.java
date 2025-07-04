@@ -20,7 +20,7 @@ public class MovieView {
         System.out.println(" 6) Movie ID check");
         System.out.println(" 7) Kill application");
     }
-
+//hi
     public String userInput(String controllerMessage) {
         System.out.println(controllerMessage + ": ");
         String userInput = scanner.nextLine();
