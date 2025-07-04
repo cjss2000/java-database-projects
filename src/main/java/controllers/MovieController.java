@@ -40,7 +40,7 @@ public class MovieController {
                     handleMovieDetails();
                     break;
                 case 6:
-                    handleMovieIDCheck();
+                    printMovieInfo(handleMovieIDCheck());
                     break;
                 case 7:
                     isRunning = false;
@@ -95,6 +95,10 @@ public class MovieController {
         mds.getMovieDetailsByID(movieId);
 
         // TODO: call the view here to display movie details
+    }
+
+    public void printMovieInfo(Movie movie){
+        mv.displayMessage(movie.toString());
     }
 
     // TODO: add a method that checks if the movie with such ID exists in the database
