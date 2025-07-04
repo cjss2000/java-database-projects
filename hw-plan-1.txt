@@ -1,0 +1,21 @@
+We need to have the same outline of classes as we do in the database tables
+That means we need:
+ - a class that repeats the structure of an actor table, called MovieActor with fields
+     matching the columns of the actor table
+ - a class that repeats the structure of movie_cast, called MovieCast with fields
+  matching the columns of the movie_cast
+
+Then you need to add two classes to HANDLE database operations for actor and movie_cast:
+- MovieActorService
+- MovieCastService
+
+They both have to have methods for CRUD operations - addActor, addMovieCast, ...
+
+NEXT STEPS (probably for later) would to adjust the view and the controller to handle
+those CRUD operations too, like
+
+"Press 10 to add an actor"
+"Press 11 to see all actors for a movie with ID: "
+...
+
+** MAKE SURE TO TALK ABOUT SINGLETON NEXT CLASS **
