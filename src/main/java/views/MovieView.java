@@ -17,6 +17,7 @@ public class MovieView {
         System.out.println(" 3) Remove a movie");
         System.out.println(" 4) Change/Edit movie name");
         System.out.println(" 5) Specific Movie details");
+        System.out.println(" 8) Get a movie year for specific movie by ID");
         System.out.println(" 6) Movie ID check");
         System.out.println(" 7) Kill application");
     }

@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS movie
     movie_year INT
 );
 
-
 CREATE TABLE IF NOT EXISTS movie_cast
 (
     act_id   INT NOT NULL,
@@ -23,7 +22,6 @@ CREATE TABLE IF NOT EXISTS movie_cast
     FOREIGN KEY (act_id) REFERENCES actor (actor_id),
     FOREIGN KEY (movie_id) REFERENCES movie (movie_id)
 );
-
 
 INSERT INTO actor (actor_name)
 VALUES ('Sigourney Weaver'),

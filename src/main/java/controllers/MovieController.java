@@ -101,7 +101,7 @@ public class MovieController {
     public Movie handleMovieIDCheck() throws SQLException {
         List<Movie> movieList = mds.getAllMovies();
         int movieId = mv.numberInput("Please enter your ID for checking service");
-        for (Movie movie : movieList) {
+        for (Movie movie : movieList){
             if (movieId == movie.getMovieId()) {
                 mv.displayMessage("Your movie has been found by the id!");
                 return movie;
