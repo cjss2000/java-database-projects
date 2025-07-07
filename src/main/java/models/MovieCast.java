@@ -11,4 +11,13 @@ public class MovieCast {
     private void setRole(String role){
         this.role = role;
     }
+   public MovieCast(String role){
+        this.role = role;
+    }
+
+    @Override
+    public String toString(){
+        return "Role: " + getRole();
+    }
+
 }
