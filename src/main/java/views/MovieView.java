@@ -20,6 +20,7 @@ public class MovieView {
         System.out.println(" 8) Get a movie year for specific movie by ID");
         System.out.println(" 6) Movie ID check");
         System.out.println(" 7) Kill application");
+        System.out.println(" 8) Show me actors");
     }
 //hi
     public String userInput(String controllerMessage) {

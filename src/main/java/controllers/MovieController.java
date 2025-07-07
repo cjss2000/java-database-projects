@@ -2,6 +2,9 @@ package controllers;
 
 import java.util.List;
 import models.Movie;
+import models.Actor;
+import models.MovieCast;
+import services.MovieActorService;
 import services.MovieDatabaseService;
 import views.MovieView;
 
@@ -11,10 +14,12 @@ public class MovieController {
 
     private MovieView mv;
     private MovieDatabaseService mds;
+    private MovieActorService mas;
 
     public MovieController() throws SQLException {
         this.mv = new MovieView();
         this.mds = new MovieDatabaseService();
+        this.mas = new MovieActorService();
     }
 
     public void systemRunner() throws SQLException {
@@ -46,12 +51,21 @@ public class MovieController {
                     isRunning = false;
                     mv.displayMessage("ending application");
                     break;
+                case 8:
+                    handleAllActorsDisplay();
 
                 // TODO: add a default case for the switch statement (show an error)
             }
         }
     }
 
+    public void handleAllActorsDisplay() throws  SQLException {
+        List<Actor> actorList = mas.getAllActors();
+
+        for (int i = 0; i < actorList.size(); i++){
+            mv.displayMessage("Here are your actors: " + actorList.get(i).toString());
+        }
+    }
     public void handleAllMoviesDisplay() throws SQLException {
         List<Movie> movieList = mds.getAllMovies();
         // TODO: use a for - loop to iterate over the movies in the list above
