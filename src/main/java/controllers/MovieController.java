@@ -72,7 +72,8 @@ public class MovieController {
     public void handleAddActor() throws SQLException {
         String inputActorName = mv.userInput("Please insert the actors name: ");
         String inputActorGender = mv.userInput("Please insert the actors gender: ");
-        mas.addActor(inputActorName, inputActorGender);
+        int inputYearOfBirth = mv.numberInput("Please insert their year of birth: ");
+        mas.addActor(inputActorName, inputActorGender, inputYearOfBirth);
         mv.displayMessage("Your actor has been added");
         handleAllActorsDisplay();
     }

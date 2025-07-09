@@ -35,9 +35,14 @@ public class MovieActorService {
     return list;
     }
 
-    public void addActor(String actorName, String actorGender) throws SQLException {
-        String addActorCommand = "INSERT INTO actor(actor_name, actor_gender) VALUES ('" + actorName + "', " + actorGender + ");";
+    public void addActor(String actorName, String actorGender, int actorBirthYear) throws SQLException {
+        String addActorCommand = "INSERT INTO actor(actor_name, actor_gender, actor_birth_year) VALUES ('" + actorName + "', '" + actorGender + "', " + actorBirthYear + ");";
         int rowsAffected = statement.executeUpdate(addActorCommand);
         System.out.println("The following rows has been inserted: " + rowsAffected);
+    }
+    public void deleteActorbyId(int actorId) throws SQLException {
+        String deleteRowCommand = "DELETE FROM actor WHERE actor_id = " + actorId + ";";
+        int executeDeleteRowCommand = statement.executeUpdate(deleteRowCommand);
+        System.out.println("Deleted" + executeDeleteRowCommand + " row" + actorId);
     }
 }
