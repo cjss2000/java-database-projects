@@ -21,6 +21,7 @@ public class MovieView {
         System.out.println(" 6) Movie ID check");
         System.out.println(" 7) Kill application");
         System.out.println(" 8) Show me actors");
+        System.out.println(" 9) add an actor");
     }
 //hi
     public String userInput(String controllerMessage) {

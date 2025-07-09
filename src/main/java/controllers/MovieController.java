@@ -53,6 +53,9 @@ public class MovieController {
                     break;
                 case 8:
                     handleAllActorsDisplay();
+                    break;
+                case 9:
+                    handleAddActor();
 
                 // TODO: add a default case for the switch statement (show an error)
             }
@@ -65,6 +68,13 @@ public class MovieController {
         for (int i = 0; i < actorList.size(); i++){
             mv.displayMessage("Here are your actors: " + actorList.get(i).toString());
         }
+    }
+    public void handleAddActor() throws SQLException {
+        String inputActorName = mv.userInput("Please insert the actors name: ");
+        String inputActorGender = mv.userInput("Please insert the actors gender: ");
+        mas.addActor(inputActorName, inputActorGender);
+        mv.displayMessage("Your actor has been added");
+        handleAllActorsDisplay();
     }
     public void handleAllMoviesDisplay() throws SQLException {
         List<Movie> movieList = mds.getAllMovies();

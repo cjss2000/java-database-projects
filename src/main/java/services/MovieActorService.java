@@ -34,4 +34,10 @@ public class MovieActorService {
     }
     return list;
     }
+
+    public void addActor(String actorName, String actorGender) throws SQLException {
+        String addActorCommand = "INSERT INTO actor(actor_name, actor_gender) VALUES ('" + actorName + "', " + actorGender + ");";
+        int rowsAffected = statement.executeUpdate(addActorCommand);
+        System.out.println("The following rows has been inserted: " + rowsAffected);
+    }
 }
