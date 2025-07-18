@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Movie;
 import services.database_config.DatabaseConnection;
+import services.database_config.SingletonInstance;
 
 public class MovieDatabaseService {
 
@@ -16,6 +17,7 @@ public class MovieDatabaseService {
     public MovieDatabaseService() throws SQLException {
         this.connection = new DatabaseConnection();
         this.statement = connection.getStatement();
+        SingletonInstance.startInstance();
     }
 
     public void addMovie(String movie_name, int movie_year) throws SQLException {
