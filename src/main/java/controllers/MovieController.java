@@ -73,6 +73,10 @@ public class MovieController {
         String inputActorName = mv.userInput("Please insert the actors name: ");
         String inputActorGender = mv.userInput("Please insert the actors gender: ");
         int inputYearOfBirth = mv.numberInput("Please insert their year of birth: ");
+        // TODO: make changes here so that the addActor method would be replaced with addObject from the generic interface
+        //  Actor actor = new Actor( inputActorName, inputActorGender, inputYearOfBirth);
+        //   mas.addObject(actor);
+
         mas.addActor(inputActorName, inputActorGender, inputYearOfBirth);
         mv.displayMessage("Your actor has been added");
         handleAllActorsDisplay();
@@ -90,6 +94,7 @@ public class MovieController {
     public void handleAddMovie() throws SQLException {
         String inputMovieName = mv.userInput("What is the title?");
         int inputMovie_year = mv.numberInput("What year was this movie created?");
+        // TODO: same as above addMovie will have to be replaced with addObject and receive a Movie object as an argument
         mds.addMovie(inputMovieName, inputMovie_year);
         mv.displayMessage("your movie has been added");
         handleAllMoviesDisplay();

@@ -14,6 +14,8 @@ public class Actor {
         this.actorBirthYear = actorBirthYear;
     }
 
+    // TODO: add another constructor without an ID passed to it, which will be set later on in the service class
+
 
     public int getActorId() {
         return actorId;

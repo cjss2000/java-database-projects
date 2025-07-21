@@ -12,6 +12,7 @@ import models.Movie;
 import services.database_config.DatabaseConnection;
 import services.database_config.SingletonExample;
 
+// TODO: rename this class for consistency to ActorService
 public class MovieActorService {
 
     private DatabaseConnection connection;

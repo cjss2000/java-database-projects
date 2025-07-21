@@ -9,6 +9,7 @@ import models.Movie;
 import services.database_config.DatabaseConnection;
 import services.database_config.SingletonExample;
 
+// TODO: rename this class for consistency to MovieService
 public class MovieDatabaseService {
 
     private DatabaseConnection connection;
@@ -53,6 +54,8 @@ public class MovieDatabaseService {
     }
 
 
+    // TODO: return Movie object instead of void and this needs to be fixed in all other services to so that
+    // getById methods return an object instead of printing the details
     public void getMovieDetailsByID(int movie_id) throws SQLException {
         String movie_id_select = "SELECT * FROM movie WHERE movie_id ="  + movie_id + ";";
         ResultSet resultSet = statement.executeQuery(movie_id_select);
