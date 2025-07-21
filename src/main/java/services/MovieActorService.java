@@ -16,10 +16,9 @@ public class MovieActorService {
 
     private DatabaseConnection connection;
     private Statement statement;
-    private SingletonExample singletonExample;
 
     public MovieActorService() throws SQLException {
-        this.singletonExample = SingletonExample.getInstance();
+        // TODO: change this object creation here and in all other places to a static method call getInstance()
         this.connection = new DatabaseConnection();
         this.statement = connection.getStatement();
     }

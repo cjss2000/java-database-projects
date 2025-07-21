@@ -16,10 +16,8 @@ public class MovieCastService {
 
     private DatabaseConnection connection;
     private Statement statement;
-    private SingletonExample singletonExample;
 
     public MovieCastService() throws SQLException {
-        this.singletonExample = SingletonExample.getInstance();
         this.connection = new DatabaseConnection();
         this.statement = connection.getStatement();
     }

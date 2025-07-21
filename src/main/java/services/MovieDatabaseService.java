@@ -12,12 +12,10 @@ import services.database_config.SingletonExample;
 public class MovieDatabaseService {
 
     private DatabaseConnection connection;
-    private SingletonExample singletonExample;
     private Statement statement;
 
     public MovieDatabaseService() throws SQLException {
         this.connection = new DatabaseConnection();
-        this.singletonExample = SingletonExample.getInstance();
         this.statement = connection.getStatement();
     }
 
