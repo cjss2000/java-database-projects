@@ -18,8 +18,10 @@ public class DatabaseConnection {
 
 
 
-    private singletonObject(){
-    }
+    private static DatabaseConnection singletonInstance;
+    private Connection customConnection;
+    private Statement statement;
+
 
     private static String URL = "jdbc:mysql://localhost:3306/demo_db";
     private static String USERNAME = "root";
@@ -27,12 +29,9 @@ public class DatabaseConnection {
 
     // TODO 1: create a private static variable of type DatabaseConnection
 
-    private Connection customConnection;
-    private Statement statement;
-    private static DatabaseConnection singletonObject;
 
     // TODO 2: make this constructor private
-    public DatabaseConnection() throws SQLException {
+    private DatabaseConnection() throws SQLException {
         this.customConnection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
@@ -47,10 +46,12 @@ public class DatabaseConnection {
 
     // TODO 3: create a getInstance() method here that would check if your static variable from point 2 above is null
     // if it is - it would create an object for it, otherwise return the existing object
-    public static SingletonExample getInstance(){
-        if (singletonObject == null) {
-            System.out.println("Calling getInstance() method for the first time.");
-            singletonObject = new SingletonExample();
+    public static DatabaseConnection getInstance() throws SQLException{
+    if (singletonInstance == null){
+        System.out.println("Calling getInstance() for the first time, creating instance of database connection");
+        singletonInstance = new DatabaseConnection();
+    }
+    return singletonInstance;
     }
 
 }

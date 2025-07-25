@@ -18,8 +18,9 @@ public class MovieCastService {
     private Statement statement;
 
     public MovieCastService() throws SQLException {
-        this.connection = new DatabaseConnection();
-        this.statement = connection.getStatement();
+//        this.connection = new DatabaseConnection();
+//        this.statement = connection.getStatement();
+        DatabaseConnection.getInstance();
     }
 
     public List<MovieCast> getAllMovieCastRoles() throws SQLException {

@@ -21,8 +21,9 @@ public class MovieActorService {
 
     public MovieActorService() throws SQLException {
         // TODO: change this object creation here and in all other places to a static method call getInstance()
-        this.connection = new DatabaseConnection();
-        this.statement = connection.getStatement();
+//        this.connection = new DatabaseConnection();
+//        this.statement = connection.getStatement();
+        DatabaseConnection.getInstance();
     }
 
     public List<Actor> getAllObjects() throws SQLException {
