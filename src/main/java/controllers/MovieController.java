@@ -3,9 +3,8 @@ package controllers;
 import java.util.List;
 import models.Movie;
 import models.Actor;
-import models.MovieCast;
 import services.MovieActorService;
-import services.MovieDatabaseService;
+import services.MovieService;
 import views.MovieView;
 
 import java.sql.SQLException;
@@ -13,12 +12,12 @@ import java.sql.SQLException;
 public class MovieController {
 
     private MovieView mv;
-    private MovieDatabaseService mds;
+    private MovieService mds;
     private MovieActorService mas;
 
     public MovieController() throws SQLException {
         this.mv = new MovieView();
-        this.mds = new MovieDatabaseService();
+        this.mds = new MovieService();
         this.mas = new MovieActorService();
     }
 
@@ -122,9 +121,11 @@ public class MovieController {
     public void handleMovieDetails() throws SQLException {
         int movieId = mv.numberInput("Please enter your movie ID for more information");
         mv.displayMessage("Here is your current movie information");
-        mds.getMovieDetailsByID(movieId);
-
+        mds.getMovieById(movieId);
+        String moveDetails = mds.getMovieById(movieId).toString();
+        mv.displayMessage(moveDetails);
         // TODO: call the view here to display movie details
+        //done!
     }
 
     public void printMovieInfo(Movie movie){

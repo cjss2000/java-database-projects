@@ -13,9 +13,19 @@ public class Actor {
         this.actorGender = actorGender;
         this.actorBirthYear = actorBirthYear;
     }
+    public Actor(int actorId, String actorName, int actorBirthYear){
+        this.actorId = actorId;
+        this.actorName = actorName;
+        this.actorBirthYear = actorBirthYear;
+    }
 
     // TODO: add another constructor without an ID passed to it, which will be set later on in the service class
-
+    //completed!
+    public Actor(String actorName, String actorGender, int actorBirthYear){
+        this.actorName = actorName;
+        this.actorGender = actorGender;
+        this.actorBirthYear = actorBirthYear;
+    }
 
     public int getActorId() {
         return actorId;

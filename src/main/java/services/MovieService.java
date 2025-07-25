@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Movie;
 import services.database_config.DatabaseConnection;
-import services.database_config.SingletonExample;
 
 // TODO: rename this class for consistency to MovieService
-public class MovieDatabaseService {
+//completed!
+public class MovieService {
 
     private DatabaseConnection connection;
     private Statement statement;
 
-    public MovieDatabaseService() throws SQLException {
+    public MovieService() throws SQLException {
         this.connection = new DatabaseConnection();
         this.statement = connection.getStatement();
     }
 
-    public void addMovie(String movie_name, int movie_year) throws SQLException {
+    public void addObject(String movie_name, int movie_year) throws SQLException {
         String createMovieCommand = "INSERT INTO movie(movie_name, movie_year) VALUES ('" + movie_name + "', " + movie_year + ");";
         int rowsAffected = statement.executeUpdate(createMovieCommand);
         System.out.println("The following rows were inserted: " + rowsAffected);
     }
 
-    public void deleteMovieByID(int movie_id) throws SQLException {
+    public void deleteObjectByID(int movie_id) throws SQLException {
         String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
         int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
         System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
@@ -39,7 +39,7 @@ public class MovieDatabaseService {
         System.out.println("Movie has been succcessfully updated");
     }
 
-    public List<Movie> getAllMovies() throws SQLException {
+    public List<Movie> getAllObjects() throws SQLException {
         List<Movie> list = new ArrayList<>();
         String getAllMoviesCommand = "select * from movie;";
         ResultSet resultSet = statement.executeQuery(getAllMoviesCommand);
@@ -55,18 +55,33 @@ public class MovieDatabaseService {
 
 
     // TODO: return Movie object instead of void and this needs to be fixed in all other services to so that
+    //completed!
     // getById methods return an object instead of printing the details
-    public void getMovieDetailsByID(int movie_id) throws SQLException {
+//    public void getMovieDetailsByID(int movie_id) throws SQLException {
+//        String movie_id_select = "SELECT * FROM movie WHERE movie_id ="  + movie_id + ";";
+//        ResultSet resultSet = statement.executeQuery(movie_id_select);
+//        while (resultSet.next()){
+//            int movieId = resultSet.getInt("movie_id");
+//            String movie_name = resultSet.getString("movie_name");
+//            int movie_year = resultSet.getInt("movie_year");
+//            Movie movie = new Movie(movieId, movie_name, movie_year);
+//            System.out.println(movie.toString());
+//        }
+//
+//    }
+    public Movie getObjectById(int movie_id) throws SQLException {
+        Movie movie = null;
         String movie_id_select = "SELECT * FROM movie WHERE movie_id ="  + movie_id + ";";
         ResultSet resultSet = statement.executeQuery(movie_id_select);
         while (resultSet.next()){
             int movieId = resultSet.getInt("movie_id");
             String movie_name = resultSet.getString("movie_name");
             int movie_year = resultSet.getInt("movie_year");
-            Movie movie = new Movie(movieId, movie_name, movie_year);
-            System.out.println(movie.toString());
+           movie = new Movie(movieId, movie_name, movie_year);
+
+        }
+         return movie;
         }
 
-    }
 
 }
