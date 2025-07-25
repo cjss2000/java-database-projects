@@ -10,7 +10,7 @@ import services.database_config.DatabaseConnection;
 
 // TODO: rename this class for consistency to MovieService
 //completed!
-public class MovieService {
+public class MovieService implements CrudOperations<Movie> {
 
     private DatabaseConnection connection;
     private Statement statement;
@@ -19,39 +19,41 @@ public class MovieService {
         this.connection = new DatabaseConnection();
         this.statement = connection.getStatement();
     }
+    @Override
+    public Movie getObjectById(Movie);
 
-    public void addObject(String movie_name, int movie_year) throws SQLException {
-        String createMovieCommand = "INSERT INTO movie(movie_name, movie_year) VALUES ('" + movie_name + "', " + movie_year + ");";
-        int rowsAffected = statement.executeUpdate(createMovieCommand);
-        System.out.println("The following rows were inserted: " + rowsAffected);
-    }
-
-    public void deleteObjectByID(int movie_id) throws SQLException {
-        String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
-        int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
-        System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
-    }
-
-    public void editMovieNamefromId(int movie_id, String updatedMovieName) throws SQLException {
-        String updateMovie =
-            "UPDATE movie SET movie_name = '" + updatedMovieName + "' WHERE movie_id = " + movie_id + ";";
-        int rowsAffected = statement.executeUpdate(updateMovie);
-        System.out.println("Movie has been succcessfully updated");
-    }
-
-    public List<Movie> getAllObjects() throws SQLException {
-        List<Movie> list = new ArrayList<>();
-        String getAllMoviesCommand = "select * from movie;";
-        ResultSet resultSet = statement.executeQuery(getAllMoviesCommand);
-        while (resultSet.next()) {
-            int movie_id = resultSet.getInt("movie_id");
-            String movie_name = resultSet.getString("movie_name");
-            int movie_year = resultSet.getInt("movie_year");
-            Movie movie = new Movie(movie_id, movie_name, movie_year);
-            list.add(movie);
-        }
-        return list;
-    }
+//    public void addObject(String movie_name, int movie_year) throws SQLException {
+//        String createMovieCommand = "INSERT INTO movie(movie_name, movie_year) VALUES ('" + movie_name + "', " + movie_year + ");";
+//        int rowsAffected = statement.executeUpdate(createMovieCommand);
+//        System.out.println("The following rows were inserted: " + rowsAffected);
+//    }
+//
+//    public void deleteObjectByID(int movie_id) throws SQLException {
+//        String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
+//        int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
+//        System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
+//    }
+//
+//    public void editMovieNamefromId(int movie_id, String updatedMovieName) throws SQLException {
+//        String updateMovie =
+//            "UPDATE movie SET movie_name = '" + updatedMovieName + "' WHERE movie_id = " + movie_id + ";";
+//        int rowsAffected = statement.executeUpdate(updateMovie);
+//        System.out.println("Movie has been succcessfully updated");
+//    }
+//
+//    public List<Movie> getAllObjects() throws SQLException {
+//        List<Movie> list = new ArrayList<>();
+//        String getAllMoviesCommand = "select * from movie;";
+//        ResultSet resultSet = statement.executeQuery(getAllMoviesCommand);
+//        while (resultSet.next()) {
+//            int movie_id = resultSet.getInt("movie_id");
+//            String movie_name = resultSet.getString("movie_name");
+//            int movie_year = resultSet.getInt("movie_year");
+//            Movie movie = new Movie(movie_id, movie_name, movie_year);
+//            list.add(movie);
+//        }
+//        return list;
+//    }
 
 
     // TODO: return Movie object instead of void and this needs to be fixed in all other services to so that
