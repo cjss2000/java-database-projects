@@ -21,9 +21,8 @@ public class MovieActorService {
 
     public MovieActorService() throws SQLException {
         // TODO: change this object creation here and in all other places to a static method call getInstance()
-//        this.connection = new DatabaseConnection();
-//        this.statement = connection.getStatement();
-        DatabaseConnection.getInstance();
+        connection = DatabaseConnection.getInstance();
+        this.statement = connection.getStatement();
     }
 
     public List<Actor> getAllObjects() throws SQLException {
@@ -58,13 +57,13 @@ public class MovieActorService {
     public Actor getObjectById(int actorId) throws SQLException {
         Actor actor = null;
         int actor_id = actorId;
-        String actor_id_select = "SELECT * FROM movie WHERE actor_id ="  + actor_id + ";";
+        String actor_id_select = "SELECT * FROM movie WHERE actor_id =" + actor_id + ";";
         ResultSet resultSet = statement.executeQuery(actor_id_select);
-        while (resultSet.next()){
-             actor_id = resultSet.getInt("actor_id");
-             String actor_name = resultSet.getString("actor_name");
-             int actorBirthYear = resultSet.getInt("actor_birth_year");
-             actor = new Actor(actor_id, actor_name, actorBirthYear);
+        while (resultSet.next()) {
+            actor_id = resultSet.getInt("actor_id");
+            String actor_name = resultSet.getString("actor_name");
+            int actorBirthYear = resultSet.getInt("actor_birth_year");
+            actor = new Actor(actor_id, actor_name, actorBirthYear);
         }
         return actor;
     }

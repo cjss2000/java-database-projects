@@ -11,11 +11,7 @@ import java.sql.Statement;
 // therefore we need to implement the Singleton logic directly HERE
 
 
-
-
-
 public class DatabaseConnection {
-
 
 
     private static DatabaseConnection singletonInstance;
@@ -46,12 +42,12 @@ public class DatabaseConnection {
 
     // TODO 3: create a getInstance() method here that would check if your static variable from point 2 above is null
     // if it is - it would create an object for it, otherwise return the existing object
-    public static DatabaseConnection getInstance() throws SQLException{
-    if (singletonInstance == null){
-        System.out.println("Calling getInstance() for the first time, creating instance of database connection");
-        singletonInstance = new DatabaseConnection();
-    }
-    return singletonInstance;
+    public static DatabaseConnection getInstance() throws SQLException {
+        if (singletonInstance == null) {
+            System.out.println("Calling getInstance() for the first time, creating instance of database connection");
+            singletonInstance = new DatabaseConnection();
+        }
+        return singletonInstance;
     }
 
 }

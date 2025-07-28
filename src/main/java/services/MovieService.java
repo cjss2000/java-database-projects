@@ -8,9 +8,9 @@ import java.util.List;
 import models.Movie;
 import services.database_config.DatabaseConnection;
 
-// TODO: rename this class for consistency to MovieService
+// TODO: Cleanup the classes so that we have just the methods that are a part of the interface + private if any
 //completed!
-public class MovieService implements CrudOperations<Movie>{
+public class MovieService implements CrudOperations<Movie> {
 
     private DatabaseConnection connection;
     private Statement statement;
@@ -21,22 +21,25 @@ public class MovieService implements CrudOperations<Movie>{
         DatabaseConnection.getInstance();
     }
 
-//    public void addObject(String movie_name, int movie_year) throws SQLException {
+    //    public void addObject(String movie_name, int movie_year) throws SQLException {
 //        String createMovieCommand = "INSERT INTO movie(movie_name, movie_year) VALUES ('" + movie_name + "', " + movie_year + ");";
 //        int rowsAffected = statement.executeUpdate(createMovieCommand);
 //        System.out.println("The following rows were inserted: " + rowsAffected);
 //    }
+
     @Override
-    public void addObject(Movie movie) throws SQLException{
-          String createMovieCommand = "INSERT INTO movie(movie_name, movie_year) VALUES ('" + movie.getMovieName() + "', " + movie.getMovieYear() + ");";
-   int rowsAffected = statement.executeUpdate(createMovieCommand);
-    System.out.println("The following rows were inserted: " + rowsAffected);
+    public void addObject(Movie movie) throws SQLException {
+        String createMovieCommand =
+            "INSERT INTO movie(movie_name, movie_year) VALUES ('" + movie.getMovieName() + "', " + movie.getMovieYear()
+                + ");";
+        int rowsAffected = statement.executeUpdate(createMovieCommand);
+        System.out.println("The following rows were inserted: " + rowsAffected);
     }
 
     //notating this before I forget, movie_name and movie_year were parameters inside addMovie method, but no longer, so now I have to use my get methods to add them to the create movie command string
 
     @Override
-    public Movie deleteObjectById(int movie_id) throws SQLException{
+    public Movie deleteObjectById(int movie_id) throws SQLException {
         String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
         int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
         System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
@@ -44,23 +47,18 @@ public class MovieService implements CrudOperations<Movie>{
     //I undestand I need to return a Movie object, but couldn't this method also be of type void?
 
     @Override
-    public Movie getObjectById(int movie_id) throws SQLException{       Movie movie = null;
-        String movie_id_select = "SELECT * FROM movie WHERE movie_id ="  + movie_id + ";";
+    public Movie getObjectById(int movie_id) throws SQLException {
+        Movie movie = null;
+        String movie_id_select = "SELECT * FROM movie WHERE movie_id =" + movie_id + ";";
         ResultSet resultSet = statement.executeQuery(movie_id_select);
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int movieId = resultSet.getInt("movie_id");
             String movie_name = resultSet.getString("movie_name");
             int movie_year = resultSet.getInt("movie_year");
             movie = new Movie(movieId, movie_name, movie_year);
 
         }
-        return movie;}
-
-
-    public void deleteObjectByID(int movie_id) throws SQLException {
-        String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
-        int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
-        System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
+        return movie;
     }
 
     public void editMovieNamefromId(int movie_id, String updatedMovieName) throws SQLException {
@@ -102,17 +100,17 @@ public class MovieService implements CrudOperations<Movie>{
 //    }
     public Movie getObjById(int movie_id) throws SQLException {
         Movie movie = null;
-        String movie_id_select = "SELECT * FROM movie WHERE movie_id ="  + movie_id + ";";
+        String movie_id_select = "SELECT * FROM movie WHERE movie_id =" + movie_id + ";";
         ResultSet resultSet = statement.executeQuery(movie_id_select);
-        while (resultSet.next()){
+        while (resultSet.next()) {
             int movieId = resultSet.getInt("movie_id");
             String movie_name = resultSet.getString("movie_name");
             int movie_year = resultSet.getInt("movie_year");
-           movie = new Movie(movieId, movie_name, movie_year);
+            movie = new Movie(movieId, movie_name, movie_year);
 
         }
-         return movie;
-        }
+        return movie;
+    }
 
 
 }
