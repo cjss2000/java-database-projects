@@ -3,7 +3,9 @@ package controllers;
 import java.util.List;
 import models.Movie;
 import models.Actor;
+import models.MovieCast;
 import services.MovieActorService;
+import services.MovieCastService;
 import services.MovieService;
 import views.MovieView;
 
@@ -14,11 +16,13 @@ public class MovieController {
     private MovieView mv;
     private MovieService mds;
     private MovieActorService mas;
+    private MovieCastService mcs;
 
     public MovieController() throws SQLException {
         this.mv = new MovieView();
         this.mds = new MovieService();
         this.mas = new MovieActorService();
+        this.mcs = new MovieCastService();
     }
 
     public void systemRunner() throws SQLException {
@@ -55,6 +59,10 @@ public class MovieController {
                     break;
                 case 9:
                     handleAddActor();
+                    break;
+                case 10:
+                    handleAllCastRolestoDisplay();
+                    break;
 
                 // TODO: add a default case for the switch statement (show an error)
             }
@@ -62,7 +70,7 @@ public class MovieController {
     }
 
     public void handleAllActorsDisplay() throws  SQLException {
-        List<Actor> actorList = mas.getAllActors();
+        List<Actor> actorList = mas.getAllObjects();
 
         for (int i = 0; i < actorList.size(); i++){
             mv.displayMessage("Here are your actors: " + actorList.get(i).toString());
@@ -76,33 +84,41 @@ public class MovieController {
         //  Actor actor = new Actor( inputActorName, inputActorGender, inputYearOfBirth);
         //   mas.addObject(actor);
 
-        mas.addActor(inputActorName, inputActorGender, inputYearOfBirth);
+        mas.addObject(inputActorName, inputActorGender, inputYearOfBirth);
         mv.displayMessage("Your actor has been added");
         handleAllActorsDisplay();
     }
     public void handleAllMoviesDisplay() throws SQLException {
-        List<Movie> movieList = mds.getAllMovies();
-        // TODO: use a for - loop to iterate over the movies in the list above
+        List<Movie> movieList = mds.getAllObjects();
+
         for (int i = 0; i < movieList.size(); i++) {
             mv.displayMessage("Here is your list:" + movieList.get(i).toString());
         }
         // call a toString method for each of them
         // pass the String to the view for it to be printed
     }
+    public void handleAllCastRolestoDisplay() throws SQLException {
+        List<MovieCast> movieCastList = mcs.getAllObjects();
+        for (int i = 0; i < movieCastList.size(); i++) {
+            mv.displayMessage("Here is your list: " + movieCastList.get(i).toString());
+        }
+    }
 
     public void handleAddMovie() throws SQLException {
         String inputMovieName = mv.userInput("What is the title?");
         int inputMovie_year = mv.numberInput("What year was this movie created?");
-        // TODO: same as above addMovie will have to be replaced with addObject and receive a Movie object as an argument
-        mds.addMovie(inputMovieName, inputMovie_year);
-        mv.displayMessage("your movie has been added");
+        int inputID= mv.numberInput("Please insert your movie ID: ");
+        Movie newMovietoAdd = new Movie(inputID, inputMovieName,inputMovie_year);
+        mds.addObject(newMovietoAdd);
+
+        mv.displayMessage("your movie has been added" + newMovietoAdd.toString());
         handleAllMoviesDisplay();
         // TODO: call the view here to say that movie was added
     }
 
     public void handleDeleteMovie() throws SQLException {
         int movieToDeleteId = mv.numberInput("Please provide your ID number for movie to remove:");
-        mds.deleteMovieByID(movieToDeleteId);
+        mds.deleteObjectById(movieToDeleteId);
         mv.displayMessage("Movie has been successfully deleted");
         handleAllMoviesDisplay();
         // TODO: call the view here to say that movie was deleted
@@ -113,19 +129,14 @@ public class MovieController {
         int movieId = mv.numberInput("Please enter your existing movie id");
         mds.editMovieNamefromId(movieId, updatedMovieName);
         mv.displayMessage("Movie:" + movieId + "has been updated");
-
-        //user getter to get name
-        // TODO: call the view here to say that movie was updated
     }
 
     public void handleMovieDetails() throws SQLException {
         int movieId = mv.numberInput("Please enter your movie ID for more information");
         mv.displayMessage("Here is your current movie information");
-        mds.getMovieById(movieId);
-        String moveDetails = mds.getMovieById(movieId).toString();
+        mds.getObjectById(movieId);
+        String moveDetails = mds.getObjectById(movieId).toString();
         mv.displayMessage(moveDetails);
-        // TODO: call the view here to display movie details
-        //done!
     }
 
     public void printMovieInfo(Movie movie){
@@ -134,7 +145,7 @@ public class MovieController {
 
     // TODO: add a method that checks if the movie with such ID exists in the database
     public Movie handleMovieIDCheck() throws SQLException {
-        List<Movie> movieList = mds.getAllMovies();
+        List<Movie> movieList = mds.getAllObjects();
         int movieId = mv.numberInput("Please enter your ID for checking service");
         for (Movie movie : movieList){
             if (movieId == movie.getMovieId()) {

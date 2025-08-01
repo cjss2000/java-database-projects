@@ -8,17 +8,16 @@ import java.util.List;
 import models.Movie;
 import services.database_config.DatabaseConnection;
 
-// TODO: Cleanup the classes so that we have just the methods that are a part of the interface + private if any
-//completed!
+
 public class MovieService implements CrudOperations<Movie> {
 
     private DatabaseConnection connection;
     private Statement statement;
 
     public MovieService() throws SQLException {
-//        this.connection = new DatabaseConnection();
-//        this.statement = connection.getStatement();
-        DatabaseConnection.getInstance();
+        this.connection = DatabaseConnection.getInstance();;
+        this.statement = connection.getStatement();
+
     }
 
     //    public void addObject(String movie_name, int movie_year) throws SQLException {
@@ -39,7 +38,7 @@ public class MovieService implements CrudOperations<Movie> {
     //notating this before I forget, movie_name and movie_year were parameters inside addMovie method, but no longer, so now I have to use my get methods to add them to the create movie command string
 
     @Override
-    public Movie deleteObjectById(int movie_id) throws SQLException {
+    public void deleteObjectById(int movie_id) throws SQLException {
         String DeleteRowCommand = "DELETE FROM movie WHERE movie_id = " + movie_id + ";";
         int executeDeleteRowCommand = statement.executeUpdate(DeleteRowCommand);
         System.out.println("Deleted" + executeDeleteRowCommand + " row " + movie_id);
